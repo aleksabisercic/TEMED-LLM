@@ -6,6 +6,7 @@ import logging
 
 logger = logging.getLogger(__name__)
 
+
 class VORC(object):
     """
     VORC (Validation and Correction) module in the context of the TEMED-LLM system.
@@ -32,14 +33,15 @@ class VORC(object):
             Generate instructions for formatting based on the pydantic_object schema.
     """
     pydantic_object: Any
+
     def __init__(self, pydantic_object):
         self.pydantic_object = pydantic_object
         self.feedback = """Reflect on provided error and correct the JSON object output"""
-    
+
     def fix_quotes(self, json_str: str):
         """Fix JSON string by replacing single quotes with double quotes and 'null' with 'None'."""
         return json_str.replace("'", '"').replace("r'\bnull'", "None").replace("Null", "None")
-        
+
     def parse(self, text: str):
         """
         Parse and validate a JSON string based on the pydantic_object schema.
@@ -58,7 +60,7 @@ class VORC(object):
         json_object = json.loads(json_str)
         self.pydantic_object.parse_obj(json_object)
         return json_object
-    
+
     def validation_feedback_loop(self, llm, message, max_retries=2):
         """
         Iteratively attempt to parse the result from a language model, providing feedback for error correction.
@@ -76,15 +78,14 @@ class VORC(object):
                 break  # if parsing was successful, break the retry loop
             except (json.JSONDecodeError, ValidationError) as e:
                 logger.error(f"Error occurred when JSON was parsed: {str(e)}")
-                if i < max_retries - 1:  # if not the last iteration
-                    error_message = f"Error Occered when JSON was parsed: {str(e)}"
-                    message = message + '\n' + answer + '\n' + error_message + '\n' + self.feedback
-                    logger.debug(f"Prompting LLM with VORC message: {message}")
-                else:  # if it's the last iteration
-                    answer_json = {}  # return an empty dict if error persists
+                error_message = f"Error Occered when JSON was parsed: {str(e)}"
+                message = message + '\n' + answer + '\n' + error_message + '\n' + self.feedback
+                logger.debug(f"Prompting LLM with VORC message: {message}")
+        else:  # if it's the last iteration
+            answer_json = {}  # return an empty dict if error persists
         logger.debug("Validation feedback loop completed.")
         return answer_json
-            
+
     def get_format_instructions(self) -> str:
         schema = self.pydantic_object.schema()
         # Remove extraneous fields.
@@ -96,6 +97,7 @@ class VORC(object):
         # Ensure json in context is well-formed with double quotes.
         schema_str = json.dumps(reduced_schema)
         return PYDANTIC_FORMAT_INSTRUCTIONS.format(schema=schema_str)
+
 
 PYDANTIC_FORMAT_INSTRUCTIONS = """The output should be formatted as a JSON instance that conforms to the JSON schema below.
 
