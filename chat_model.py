@@ -1,6 +1,6 @@
 import logging
 from langchain.chat_models import ChatOpenAI
-from langchain.llms import OpenAI
+from langchain.llms import OpenAI, HuggingFaceHub
 from langchain.schema import (
     HumanMessage,
     SystemMessage,
@@ -8,6 +8,21 @@ from langchain.schema import (
 
 # SET LOGGING
 logger = logging.getLogger(__name__)
+
+class InstructHuggingFaceHub:
+    def __init__(self, repo_id, model_kwargs={'temperature': 0}):
+        self.model_kwargs = model_kwargs
+        self.repo_id = repo_id
+        self.llm = HuggingFaceHub(repo_id=self.repo_id, model_kwargs=self.model_kwargs)
+
+    def get_model(self):
+        return self.llm
+
+    def __call__(self, messages):
+        return self.llm(messages)
+
+    def forward(self, messages):
+        return self.llm(messages)
 
 class InterfaceLLM:
     def __init__(self, **kwargs):
@@ -60,12 +75,16 @@ class ChatLLM(InterfaceLLM):
         return self.llm(messages).content
 
 
-def create_llm(openai_api_key="", temperature=0, model_name="gpt-3.5-turbo"):
+def create_llm(openai_api_key="", temperature=0, model_name="gpt-3.5-turbo", repo_id=""):
     """Initialize the OpenAI LLM model."""
     if model_name == "gpt-3.5-turbo":
         logger.info("Using gpt-3.5-turbo model.")
         llm = ChatLLM(temperature=temperature, openai_api_key=openai_api_key)
+    elif repo_id != "":
+        logger.info("Using HuggingFaceHub model. Repo ID: " + repo_id)
+        llm = InstructHuggingFaceHub(repo_id=repo_id, model_kwargs={'temperature': temperature})
     else:
         logger.info("Using Instruct GPT model.")
         llm = InstructOpenAI(temperature=temperature, openai_api_key=openai_api_key)
+    
     return llm
