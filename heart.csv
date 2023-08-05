@@ -1,0 +1,41 @@
+medical_report
+"""REASON FOR CONSULTATION: Routine check-up.
+HISTORY OF PRESENT ILLNESS: The patient is a 47-year-old male who presents for a routine check-up. He reports no chest pain, shortness of breath, or other symptoms.
+PAST MEDICAL HISTORY: No significant past medical history.
+ALLERGIES: No known drug allergies.
+FAMILY HISTORY: No significant family history of heart disease.
+SOCIAL HISTORY: Non-smoker, occasional alcohol consumption, and no illicit drug use.
+CURRENT MEDICATIONS: None.
+REVIEW OF SYSTEMS: Patient reports occasional headaches.
+PHYSICAL EXAMINATION:
+VITAL SIGNS: Blood pressure 110/70, pulse 80, O2 saturation 98% on room air, temperature 98.6, respiratory rate 16.
+GENERAL: Patient is alert and oriented, appears comfortable at rest.
+HEAD AND NECK: No JVP seen, no carotid bruits.
+CHEST: Clear to auscultation bilaterally.
+CARDIOVASCULAR: Regular rhythm, normal S1 and S2, no murmurs, rubs, or gallops.
+ABDOMEN: Soft, non-tender, and non-distended.
+EXTREMITIES: No edema or clubbing.
+DATA: A 12-lead EKG revealed normal sinus rhythm with a rate of 80 beats per minute and no ST-T wave abnormalities.
+LABORATORY DATA: WBC 7.2, hemoglobin 14.5, platelets 200. Chemistry-7 within normal limits. Lipid profile: Triglycerides 120, total cholesterol 249, HDL 50, LDL 170. Fasting blood sugar 90 mg/dL. Liver function tests within normal limits. BUN and creatinine within normal limits.
+TREADMILL STRESS TEST: The patient achieved a maximum heart rate of 150 beats per minute. No chest pain or shortness of breath during the test. No ST-segment changes noted.
+ASSESSMENT AND RECOMMENDATIONS: The patient has no evidence of heart disease based on his normal EKG and treadmill stress test. His lipid profile reveals borderline high total cholesterol and LDL levels. Lifestyle modifications, including a heart-healthy diet and regular exercise, are recommended to improve his lipid profile and overall cardiovascular health."""
+"""REASON FOR CONSULTATION: Routine check-up.
+HISTORY OF PRESENT ILLNESS: The patient is a 46-year-old male who presents for a routine check-up. He reports no chest pain, shortness of breath, or other symptoms.
+PAST MEDICAL HISTORY: No significant past medical history.
+ALLERGIES: No known drug allergies.
+FAMILY HISTORY: No significant family history of heart disease.
+SOCIAL HISTORY: Non-smoker, occasional alcohol consumption, and no illicit drug use.
+CURRENT MEDICATIONS: None.
+REVIEW OF SYSTEMS: Patient reports occasional headaches.
+PHYSICAL EXAMINATION:
+VITAL SIGNS: Blood pressure 120/80, pulse 80, O2 saturation 98% on room air, temperature 98.6, respiratory rate 16.
+GENERAL: Patient is alert and oriented, appears comfortable at rest.
+HEAD AND NECK: No JVP seen, no carotid bruits.
+CHEST: Clear to auscultation bilaterally.
+CARDIOVASCULAR: Regular rhythm, normal S1 and S2, no murmurs, rubs, or gallops.
+ABDOMEN: Soft, non-tender, and non-distended.
+EXTREMITIES: No edema or clubbing.
+DATA: A 12-lead EKG revealed normal sinus rhythm with a rate of 80 beats per minute and no ST-T wave abnormalities.
+LABORATORY DATA: WBC 7.2, hemoglobin 14.5, platelets 200. Chemistry-7 within normal limits. Lipid profile: Triglycerides 120, total cholesterol 230, HDL 50, LDL 150. Fasting blood sugar 90 mg/dL. Liver function tests within normal limits. BUN and creatinine within normal limits.
+TREADMILL STRESS TEST: The patient achieved a maximum heart rate of 150 beats per minute. No chest pain or shortness of breath during the test. No ST-segment changes noted.
+ASSESSMENT AND RECOMMENDATIONS: The patient has no evidence of heart disease based on his normal EKG and treadmill stress test. He should continue to follow a healthy lifestyle with regular exercise and a balanced diet."""
