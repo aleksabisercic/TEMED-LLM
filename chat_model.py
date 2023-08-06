@@ -2,6 +2,7 @@ import logging
 from langchain.chat_models import ChatOpenAI
 from langchain.llms import OpenAI, HuggingFacePipeline
 from transformers import AutoModelForCausalLM, AutoTokenizer, pipeline
+from bitsandbytes import BitsAndBytesConfig
 from langchain.schema import (
     HumanMessage,
     SystemMessage,
@@ -16,6 +17,8 @@ class InstructHuggingFace:
         self.model_id = model_id
         
         self.tokenizer = AutoTokenizer.from_pretrained(model_id)
+        self.quantization_config = BitsAndBytesConfig(llm_int8_enable_fp32_cpu_offload=True)
+
         self.model = AutoModelForCausalLM.from_pretrained(model_id)
         self.pipe = pipeline(
             "text-generation", 
@@ -23,6 +26,7 @@ class InstructHuggingFace:
             tokenizer=self.tokenizer, 
             max_new_tokens=10, # max length of output?
             temperature=self.temperature
+            quantization_config=quantization_config
         )
         
         self.llm = HuggingFacePipeline(pipeline=self.pipe)
