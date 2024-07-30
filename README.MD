@@ -1,7 +1,7 @@
 # TEMED-LLM: Interpretable Medical Diagnostics with Structured Data Extraction by Large Language Models
 
 ## Summary
-This repository contains the implementation of **TEMED-LLM (Tabular Extraction for Enhanced Medical Diagnostics using Large Language Models)**, a methodology for extracting structured tabular data from unstructured medical texts. The project aims to improve medical diagnostics by combining the capabilities of large language models (LLMs) with interpretable machine learning (ML) models.
+This repository contains the implementation of **TEMED-LLM (Tabular Extraction for Enhanced Medical Diagnostics using Large Language Models)**, a methodology for extracting structured tabular data from unstructured medical texts based on [Interpretable Medical Diagnostics with Structured Data Extraction by Large Language Models paper](https://arxiv.org/pdf/2306.05052). The project aims to improve medical diagnostics by combining the capabilities of large language models (LLMs) with interpretable machine learning (ML) models. 
 
 ### Key Features
 1. **Text to Table Conversion**: The system extracts numerical and categorical data from medical reports, converting them into structured tabular formats using LLMs guided by domain-specific reasoning rules.
