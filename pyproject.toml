@@ -1,3 +1,17 @@
+[tool.poetry]
+name = "temed_llm"
+version = "0.1.0"
+description = "TEMED-LLM: Medical Text to Tabular Data Conversion System"
+authors = ["Your Name <your.email@example.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.8"
+# Add your other dependencies here
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
 # Black formatting
 [tool.black]
 line-length = 99
@@ -17,7 +31,7 @@ exclude = '''
   )/
 '''
 
-# iSort
+# iSort settings
 [tool.isort]
 profile = "black"
 line_length = 120
@@ -25,6 +39,7 @@ multi_line_output = 3
 include_trailing_comma = true
 virtual_env = "venv"
 
+# Flake8 settings
 [tool.flake8]
 exclude = "venv"
 ignore = ["E501", "W503", "E226"]
