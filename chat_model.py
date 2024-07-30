@@ -1,6 +1,8 @@
 import logging
 from langchain.chat_models import ChatOpenAI
-from langchain.llms import OpenAI
+from langchain.llms import OpenAI, HuggingFacePipeline
+from transformers import AutoModelForCausalLM, AutoTokenizer, pipeline
+from bitsandbytes import BitsAndBytesConfig
 from langchain.schema import (
     HumanMessage,
     SystemMessage,
@@ -8,6 +10,35 @@ from langchain.schema import (
 
 # SET LOGGING
 logger = logging.getLogger(__name__)
+
+class InstructHuggingFace:
+    def __init__(self, model_id, temperature=0):
+        self.temperature = temperature
+        self.model_id = model_id
+        
+        self.tokenizer = AutoTokenizer.from_pretrained(model_id)
+        self.quantization_config = BitsAndBytesConfig(llm_int8_enable_fp32_cpu_offload=True)
+
+        self.model = AutoModelForCausalLM.from_pretrained(model_id)
+        self.pipe = pipeline(
+            "text-generation", 
+            model=self.model, 
+            tokenizer=self.tokenizer, 
+            max_new_tokens=10, # max length of output?
+            temperature=self.temperature
+            quantization_config=quantization_config
+        )
+        
+        self.llm = HuggingFacePipeline(pipeline=self.pipe)
+        
+    def get_model(self):
+        return self.llm
+
+    def __call__(self, messages):
+        return self.llm(messages)
+
+    def forward(self, messages):
+        return self.llm(messages)
 
 class InterfaceLLM:
     def __init__(self, **kwargs):
@@ -60,12 +91,16 @@ class ChatLLM(InterfaceLLM):
         return self.llm(messages).content
 
 
-def create_llm(openai_api_key="", temperature=0, model_name="gpt-3.5-turbo"):
+def create_llm(openai_api_key="", temperature=0, model_name="gpt-3.5-turbo", huggingface_model = False):
     """Initialize the OpenAI LLM model."""
     if model_name == "gpt-3.5-turbo":
         logger.info("Using gpt-3.5-turbo model.")
         llm = ChatLLM(temperature=temperature, openai_api_key=openai_api_key)
+    elif huggingface_model == True:
+        logger.info("Using HuggingFaceHub model. Repo ID: " + model_name)
+        llm = InstructHuggingFace(repo_id=model_name, temperature=temperature)
     else:
         logger.info("Using Instruct GPT model.")
         llm = InstructOpenAI(temperature=temperature, openai_api_key=openai_api_key)
+    
     return llm
