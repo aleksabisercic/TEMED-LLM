@@ -1,12 +1,18 @@
-# TEMED-LLM: Medical Text to Tabular Data Conversion System
+# TEMED-LLM: Interpretable Medical Diagnostics with Structured Data Extraction by Large Language Models
 
-This Python project is based on the TEMED-LLM methodology presented in a NIPS paper. The objective is to transform medical text into tabular data, enhancing interpretability and diagnostic performance.
+## Summary
+This repository contains the implementation of **TEMED-LLM (Tabular Extraction for Enhanced Medical Diagnostics using Large Language Models)**, a methodology for extracting structured tabular data from unstructured medical texts. The project aims to improve medical diagnostics by combining the capabilities of large language models (LLMs) with interpretable machine learning (ML) models.
 
-The system comprises three main modules:
+### Key Features
+1. **Text to Table Conversion**: The system extracts numerical and categorical data from medical reports, converting them into structured tabular formats using LLMs guided by domain-specific reasoning rules.
+2. **Reasoning and Extraction (RExtract) Module**: This module generates prompts for LLMs to extract relevant features from medical texts, using domain knowledge and examples to enhance accuracy.
+3. **Validation and Reasoning Correction (VORC) Module**: It ensures data integrity by identifying and correcting extraction errors through rule-based agents or iterative LLM prompts.
+4. **Interpretable ML Analysis**: Extracted data is analyzed using interpretable models like decision trees and logistic regression, providing transparent predictions and aiding clinical decision-making.
 
-1. **RExtract**: A module that uses a Large Language Model (LLM) to extract tabular data from medical text.
-2. **VORC**: A module that ensures the reliability and accuracy of the extracted data by identifying and correcting errors.
-3. **ML Analysis**: A module responsible for training an interpretable machine learning model using the extracted tabular data.
+### Benefits
+- **Efficiency**: The approach leverages LLMs for accurate data extraction, bypassing the inefficiencies of traditional text-to-table methods.
+- **Interpretability**: The use of interpretable ML models allows for transparent and understandable predictions, enhancing trust in automated diagnostics.
+- **Versatility**: Applicable to various medical domains, the system supports the processing of different medical report formats.
 
 ## Code Structure
 
