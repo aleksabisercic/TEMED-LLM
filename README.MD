@@ -16,7 +16,16 @@ This repository contains the implementation of **TEMED-LLM (Tabular Extraction f
 
 ## Code Structure
 
-Here is the structure of the core modules:
+The project is organized into several modules, each handling specific aspects of the processing pipeline:
+
+- **core/**: Contains core functionalities like text extraction and data validation.
+- **data/**: Manages data schemas and data-related operations.
+- **utils/**: Provides utility functions and configurations.
+- **visualizations/**: For generating plots and visual insights.
+- **nlp/**: Handles natural language processing tasks.
+- **evaluation/**: Focuses on evaluating the performance of the system.
+
+Detailed descriptions of key modules:
 
 - `config.py`: Contains configuration variables such as the OpenAI API key and dataset name.
 - `data_schema.py`: Contains Pydantic schemas for data validation.
